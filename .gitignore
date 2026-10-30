@@ -1,0 +1,148 @@
+# =========================================
+# ENV & SECRETS
+# =========================================
+.env
+.env.*
+!.env.example
+*.local
+secrets/
+*.pem
+*.key
+*.p12
+
+# =========================================
+# .NET / BACKEND
+# =========================================
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+.vs/
+.vscode/launch.json
+*.csproj.user
+project.lock.json
+project.fragment.lock.json
+artifacts/
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+*.nupkg
+*.snupkg
+*.dll
+*.pdb
+!**/appsettings.json
+appsettings.Development.json
+appsettings.Local.json
+
+# =========================================
+# NODE / FRONTEND
+# =========================================
+node_modules/
+dist/
+build/
+.vite/
+.cache/
+.parcel-cache/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+coverage/
+.nyc_output/
+
+# =========================================
+# DOCKER
+# =========================================
+*.pid
+docker-compose.override.yml
+.docker/
+*.tar
+*.tar.gz
+
+# =========================================
+# DATABASE / BACKUP
+# =========================================
+*.sql
+*.sql.gz
+*.dump
+pgdata/
+backup/
+backups/
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================================
+# BUILD OUTPUT LAIN
+# =========================================
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# =========================================
+# OS
+# =========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# =========================================
+# EDITOR / IDE
+# =========================================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.iml
+*.ipr
+*.iws
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+.history/
+
+# =========================================
+# ASSETS BESAR (opsional, sesuai kebiasaan)
+# =========================================
+# Kalau gambar soal disimpan di repo, JANGAN ignore:
+# frontend/public/images/
+# Tapi kalau gambar peserta / output sementara, abaikan:
+uploads/
+generated/
+*.psd
+*.ai
+*.sketch
+
+# =========================================
+# CI/CD & DEPLOY (kalau ada file lokal)
+# =========================================
+.deploy/
+.deploy-*
+deploy.local.*

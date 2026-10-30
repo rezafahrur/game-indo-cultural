@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: indogame
+      POSTGRES_USER: indogame
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U indogame -d indogame"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    image: reg-loq.rezafahrur.com/indogame-backend:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Default: "Host=db;Port=5432;Database=indogame;Username=indogame;Password=${POSTGRES_PASSWORD}"
+      AdminToken: ${ADMIN_TOKEN}
+      ASPNETCORE_URLS: "http://+:5080"
+    expose:
+      - "5080"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - frontend
+
+  frontend:
+    image: reg-loq.rezafahrur.com/indogame-frontend:latest
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80"
+
+volumes:
+  pgdata:

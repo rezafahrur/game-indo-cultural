@@ -1,0 +1,3 @@
+indo-festival-buct-inter-cultural-event.rezafahrur.com {
+    reverse_proxy frontend:80
+}
